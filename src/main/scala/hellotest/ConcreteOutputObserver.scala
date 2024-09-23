@@ -13,7 +13,7 @@ class ConcreteOutputObserver extends OutputObserver:
   override def convert(cloud: Result): String =
   {
     // DO: convert the given map object into a string representation and return it
-    val keys = cloud.keysIterator
+    val keys = cloud.toSeq.sortBy(_._2).reverse.toMap.keysIterator
     if (!keys.hasNext) return ""
     var key = keys.next()
     var output = key + ": " + cloud(key)
